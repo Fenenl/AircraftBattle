@@ -1,0 +1,50 @@
+import pygame
+from pygame.sprite import Group
+from settings import Settings
+from button import Button
+from game_stats import GameStats
+from ship import Ship
+from scoreboard import  Scoreboard
+from lifeboard import Lifeboard
+import game_functions as gf
+
+
+def run_game():
+
+    pygame.init()
+    settings = Settings()
+    screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
+    pygame.display.set_caption(settings.caption)
+
+    play_button = Button(settings, screen, "Play")
+
+    stats = GameStats(settings)
+
+    scoreboard = Scoreboard(settings, screen, stats)
+    lifeboard = Lifeboard(settings, screen, stats)
+
+    ship = Ship(settings, screen)     #  创建飞机
+    bullets = Group()       #  用于储存子弹的编组
+
+    enemies = Group()
+    enemy_bullets = Group()
+
+    gf.create_fleet(settings, screen, ship, enemies)
+
+    while True:
+
+        gf.check_events(settings, screen, stats, play_button, ship,
+                      enemies, bullets, enemy_bullets)
+
+        if stats.game_active:       #  飞机生命值大于0时存活
+            ship.update()
+            gf.update_bullets(settings, screen, stats, scoreboard, ship, enemies, bullets)
+            gf.update_enemies(settings, ship, enemies)
+            gf.update_enemy_bullet(settings,stats, screen, enemies, lifeboard,
+                                   bullets,enemy_bullets, ship)
+
+        gf.update_screen(settings, screen, stats, scoreboard, lifeboard, ship, enemies, bullets,
+                         enemy_bullets, play_button)
+
+
+run_game()
