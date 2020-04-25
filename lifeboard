@@ -1,0 +1,29 @@
+import pygame.font
+
+class Lifeboard():
+
+    def __init__(self, settings, screen, stats):
+
+        self.screen = screen
+        self.screen_rect = screen.get_rect()
+        self.settings = settings
+        self.stats = stats
+
+        self.text_color = (30, 30, 30)
+        self.font = pygame.font.SysFont(None, 48)
+
+        self.prep_life()
+
+    def prep_life(self):
+
+        life_str = str(self.stats.life)
+        self.life_image = self.font. render(life_str, True, self.text_color,
+                                             self.settings.bg_color)
+
+        self.life_rect = self.life_image.get_rect()
+        self.life_rect.left = self.screen_rect.left + 20
+        self.life_rect.top = 20
+
+    def show_life(self):
+
+        self.screen.blit(self.life_image, self.life_rect)
