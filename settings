@@ -1,0 +1,27 @@
+class Settings():
+
+    def __init__(self):
+
+        self.screen_width = 1200        #  窗口设置
+        self.screen_height = 800
+        self.bg_color = (255, 255, 255)     #  背景颜色
+        self.caption = '飞机大战'
+
+        self.ship_speed_factor = 1.5        #  飞机速度
+        self.ship_limit = 3             #  飞机生命值
+
+        self.bullet_speed_factor = 1        #  飞机子弹设置
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = 60, 60, 60
+
+        self.enemy_speed_factor = 0.3       #  敌机速度
+        self.fleet_drop_speed = 10
+        self.fleet_direction = 1        #  1为右移， -1为左移
+
+        self.enemy_bullet_speed_factor = 0.5        #  敌机子弹设置
+        self.enemy_bullet_width = 3
+        self.enemy_bullet_height = 15
+        self.enemy_bullet_color = 60, 60, 60
+
+        self.enemy_points = 10      #  敌机分数
