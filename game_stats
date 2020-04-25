@@ -1,0 +1,14 @@
+class GameStats():
+
+    def __init__(self, settings):
+
+        self.settings = settings
+        self.reset_stats()
+
+        self.game_active = False
+
+    def reset_stats(self):      #  每次开始游戏时重置
+
+        self.ships_left = self.settings.ship_limit
+        self.score = 0                              #  分数
+        self.life = self.settings.ship_limit        #  生命值
